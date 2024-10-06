@@ -6,7 +6,7 @@ baseURL = "https://mikejeffs.xyz"
 theme = 'hugo-bearblog'
 
 # Basic metadata configuration for your blog.
-title = "Mike Jeffs' Blog"
+title = "Mike Jeffs"
 author = "Mike Jeffs"
 copyright = "Copyright © 2024, Michael Jeffs."
 languageCode = "en-US"

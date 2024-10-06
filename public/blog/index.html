@@ -6,14 +6,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="shortcut icon" href="http://localhost:1313/images/favicon.png" />
-<title>Blogs | Mike Jeffs&#39; Blog</title>
+<title>Blogs | Mike Jeffs</title>
 <meta name="title" content="Blogs" />
 <meta name="description" content="Mike Jeffs" />
 <meta name="keywords" content="" />
 
 
 <meta property="og:url" content="http://localhost:1313/blog/">
-  <meta property="og:site_name" content="Mike Jeffs&#39; Blog">
+  <meta property="og:site_name" content="Mike Jeffs">
   <meta property="og:title" content="Blogs">
   <meta property="og:description" content="Mike Jeffs">
   <meta property="og:locale" content="en_US">
@@ -38,19 +38,23 @@
   <meta itemprop="image" content="http://localhost:1313/images/share.png">
 <meta name="referrer" content="no-referrer-when-downgrade" />
 
-  <link rel="alternate" type="application/rss+xml" href="http://localhost:1313/blog/index.xml" title="Mike Jeffs' Blog" />
+  <link rel="alternate" type="application/rss+xml" href="http://localhost:1313/blog/index.xml" title="Mike Jeffs" />
   <style>
   body {
     font-family: Verdana, sans-serif;
+    height: 95vh;
     margin: auto;
     padding: 20px;
-    max-width: 720px;
+    max-width: 800px;
     text-align: left;
     background-color: #fff;
     word-wrap: break-word;
     overflow-wrap: break-word;
     line-height: 1.5;
     color: #444;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
   }
 
   h1,
@@ -65,8 +69,11 @@
   }
 
   a {
-    color: #3273dc;
-     
+    color: #fcd34d
+  }
+
+  a:hover {
+    color: #fff;
   }
 
   .title {
@@ -134,11 +141,6 @@
     font-style: italic;
   }
 
-  footer {
-    padding: 25px;
-    text-align: center;
-  }
-
   .helptext {
     color: #777;
     font-size: small;
@@ -164,12 +166,12 @@
   }
 
   ul.blog-posts li a:visited {
-    color: #8b6fcb;
+    color: #B3932E;
   }
 
   @media (prefers-color-scheme: dark) {
     body {
-      background-color: #333;
+      background-color: #1E293B;
       color: #ddd;
     }
 
@@ -182,10 +184,6 @@
     strong,
     b {
       color: #eee;
-    }
-
-    a {
-      color: #8cc2dd;
     }
 
     code {
@@ -212,14 +210,15 @@
   }
 
 </style>
-
 </head>
 
 <body>
   <header><a href="/" class="title">
-  <h2>Mike Jeffs&#39; Blog</h2>
+  <h2>Mike Jeffs</h2>
 </a>
 <nav><a href="/">Home</a>
+
+<a href="/links/">Links</a>
 
 
 <a href="/blog">Blog</a>
@@ -259,14 +258,11 @@
     width: 100%;
     padding: 20px 0;
     justify-content: space-between;
+    margin-top: auto;
   }
 </style>
 <footer>
-  <p>Copyright 2024 Mike Jeffs</p>
-  <p>
-    Made with
-    <a href="https://github.com/janraasch/hugo-bearblog/">Hugo ʕ•ᴥ•ʔ Bear</a>
-  </p>
+  <p>© 2024 Mike Jeffs</p>
 </footer>
 </footer>
 

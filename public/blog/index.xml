@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blogs on Mike Jeffs&#39; Blog</title>
+    <title>Blogs on Mike Jeffs</title>
     <link>http://localhost:1313/blog/</link>
-    <description>Recent content in Blogs on Mike Jeffs&#39; Blog</description>
+    <description>Recent content in Blogs on Mike Jeffs</description>
     <generator>Hugo</generator>
     <language>en-US</language>
     <copyright>Copyright © 2024, Michael Jeffs.</copyright>

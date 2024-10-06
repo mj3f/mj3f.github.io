@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Mike Jeffs&#39; Blog</title>
+    <title>Mike Jeffs</title>
     <link>http://localhost:1313/</link>
-    <description>Recent content on Mike Jeffs&#39; Blog</description>
+    <description>Recent content on Mike Jeffs</description>
     <generator>Hugo</generator>
     <language>en-US</language>
     <copyright>Copyright © 2024, Michael Jeffs.</copyright>
-    <lastBuildDate>Sat, 05 Oct 2024 16:40:57 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 05 Oct 2024 16:42:11 +0100</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Links</title>
+      <link>http://localhost:1313/links/</link>
+      <pubDate>Sat, 05 Oct 2024 16:42:11 +0100</pubDate>
+      <guid>http://localhost:1313/links/</guid>
+      <description>&lt;h1 id=&#34;links&#34;&gt;Links&lt;/h1&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/mj3f/&#34;&gt;GitHub&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Test</title>
       <link>http://localhost:1313/test/</link>
