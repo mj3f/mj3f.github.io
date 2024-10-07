@@ -14,7 +14,7 @@
       <link>http://localhost:1313/links/</link>
       <pubDate>Sat, 05 Oct 2024 16:42:11 +0100</pubDate>
       <guid>http://localhost:1313/links/</guid>
-      <description>&lt;h1 id=&#34;links&#34;&gt;Links&lt;/h1&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/mj3f/&#34;&gt;GitHub&lt;/a&gt;&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;my-links&#34;&gt;My Links&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/mj3f/&#34;&gt;GitHub&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.linkedin.com/in/michael-jeffs-pratt-650046123/&#34;&gt;LinkedIn&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://letterboxd.com/mj3f/&#34;&gt;Letterboxd&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;links-to-stuff-i-find-interesting&#34;&gt;Links to stuff I find interesting&lt;/h2&gt;</description>
     </item>
     <item>
       <title>Test</title>
