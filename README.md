@@ -1,4 +1,4 @@
-# Mike Jeffs' Blog
+# My Blog
 This repo contains the code for my personal blog, built with Hugo and the bear theme.
 
 Docs can be found here:
