@@ -7,21 +7,21 @@
     <generator>Hugo</generator>
     <language>en-US</language>
     <copyright>Copyright © 2024, Michael Jeffs.</copyright>
-    <lastBuildDate>Sat, 05 Oct 2024 16:42:11 +0100</lastBuildDate>
+    <lastBuildDate>Sun, 10 Nov 2024 20:02:08 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Writing Integration tests with Testcontainers</title>
+      <link>http://localhost:1313/writing-integration-tests-with-testcontainers/</link>
+      <pubDate>Sun, 10 Nov 2024 20:02:08 +0000</pubDate>
+      <guid>http://localhost:1313/writing-integration-tests-with-testcontainers/</guid>
+      <description>&lt;p&gt;This tutorial will demonstrate how to setup a Testcontainer running PostgreSQL for running integration tests on a ASP.NET Core Web API.&#xA;For database access, both Entity Framework and Dapper are covered in this tutorial.&lt;/p&gt;&#xA;&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;A Web API project setup with a database, and at least one endpoint to test again.&lt;/li&gt;&#xA;&lt;li&gt;Docker installed on your machine.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;setup&#34;&gt;Setup&lt;/h2&gt;&#xA;&lt;p&gt;Create a new xUnit project, and within it install any dependencies you require (e.g. fluentAssertions, Bogus for fake data, etc.). You also need to add a reference to the Web API project in the test projects csproj file.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Links</title>
       <link>http://localhost:1313/links/</link>
       <pubDate>Sat, 05 Oct 2024 16:42:11 +0100</pubDate>
       <guid>http://localhost:1313/links/</guid>
       <description>&lt;h2 id=&#34;my-links&#34;&gt;My Links&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/mj3f/&#34;&gt;GitHub&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.linkedin.com/in/michael-jeffs-pratt-650046123/&#34;&gt;LinkedIn&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://letterboxd.com/mj3f/&#34;&gt;Letterboxd&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;links-to-stuff-i-find-interesting&#34;&gt;Links to stuff I find interesting&lt;/h2&gt;</description>
-    </item>
-    <item>
-      <title>Test</title>
-      <link>http://localhost:1313/test/</link>
-      <pubDate>Sat, 05 Oct 2024 16:40:57 +0100</pubDate>
-      <guid>http://localhost:1313/test/</guid>
-      <description>&lt;p&gt;This is a page about »Test«.&#xA;First blog post coming soon, this is just a test so that I can get a feel for how hugo works.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
