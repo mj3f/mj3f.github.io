@@ -1,5 +1,5 @@
 +++
-title = "Writing Integration tests with Testcontainers"
+title = "Writing .NET Integration tests with Testcontainers"
 date = "2024-11-10T20:02:08Z"
 description = "Tutorial for setting up a PostgreSQL Testcontainer for ASP.NET Core API Integration tests"
 
@@ -11,7 +11,7 @@ For database access, both Entity Framework and Dapper are covered in this tutori
 
 ## Prerequisites
 
-- A Web API project setup with a database, and at least one endpoint to test again.
+- A Web API project setup with a database, and at least one endpoint to test against.
 - Docker installed on your machine.
 
 ## Setup
