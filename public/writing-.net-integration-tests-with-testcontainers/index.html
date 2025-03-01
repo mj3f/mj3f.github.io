@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://localhost:1313/images/favicon.png" />
+<title>Writing .NET Integration tests with Testcontainers | Mike Jeffs</title>
+<meta name="title" content="Writing .NET Integration tests with Testcontainers" />
+<meta name="description" content="Tutorial for setting up a PostgreSQL Testcontainer for ASP.NET Core API Integration tests" />
+<meta name="keywords" content="" />
+
+
+<meta property="og:url" content="http://localhost:1313/writing-.net-integration-tests-with-testcontainers/">
+  <meta property="og:site_name" content="Mike Jeffs">
+  <meta property="og:title" content="Writing .NET Integration tests with Testcontainers">
+  <meta property="og:description" content="Tutorial for setting up a PostgreSQL Testcontainer for ASP.NET Core API Integration tests">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2024-11-10T20:02:08+00:00">
+    <meta property="article:modified_time" content="2024-11-10T20:02:08+00:00">
+    <meta property="og:image" content="http://localhost:1313/images/share.png">
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/images/share.png">
+  <meta name="twitter:title" content="Writing .NET Integration tests with Testcontainers">
+  <meta name="twitter:description" content="Tutorial for setting up a PostgreSQL Testcontainer for ASP.NET Core API Integration tests">
+
+
+
+
+  <meta itemprop="name" content="Writing .NET Integration tests with Testcontainers">
+  <meta itemprop="description" content="Tutorial for setting up a PostgreSQL Testcontainer for ASP.NET Core API Integration tests">
+  <meta itemprop="datePublished" content="2024-11-10T20:02:08+00:00">
+  <meta itemprop="dateModified" content="2024-11-10T20:02:08+00:00">
+  <meta itemprop="wordCount" content="1475">
+  <meta itemprop="image" content="http://localhost:1313/images/share.png">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <style>
+  body {
+    font-family: Verdana, sans-serif;
+    height: 95vh;
+    margin: auto;
+    padding: 20px;
+    max-width: 800px;
+    text-align: left;
+    background-color: #fff;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: #444;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong,
+  b {
+    color: #222;
+  }
+
+  a {
+    color: #fcd34d;
+  }
+
+  a:hover {
+    color: #000;
+  }
+
+  .title {
+    text-decoration: none;
+    border: 0;
+  }
+
+  .title span {
+    font-weight: 400;
+  }
+
+  nav a {
+    margin-right: 10px;
+  }
+
+  textarea {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  input {
+    font-size: 16px;
+  }
+
+  content {
+    line-height: 1.6;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  code {
+    padding: 2px 5px;
+    background-color: #f2f2f2;
+  }
+
+  pre code {
+    color: #222;
+    display: block;
+    padding: 20px;
+    white-space: pre-wrap;
+    font-size: 14px;
+    overflow-x: auto;
+  }
+
+  div.highlight pre {
+    background-color: initial;
+    color: initial;
+  }
+
+  div.highlight code {
+    background-color: unset;
+    color: unset;
+  }
+
+  blockquote {
+    border-left: 1px solid #999;
+    color: #222;
+    padding-left: 20px;
+    font-style: italic;
+  }
+
+  .helptext {
+    color: #777;
+    font-size: small;
+  }
+
+  .errorlist {
+    color: #eba613;
+    font-size: small;
+  }
+
+   
+  ul.blog-posts {
+    list-style-type: none;
+    padding: unset;
+  }
+
+  ul.blog-posts li {
+    display: flex;
+  }
+
+  ul.blog-posts li span {
+    flex: 0 0 130px;
+  }
+
+  ul.blog-posts li a:visited {
+    color: #b3932e;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #1e293b;
+      color: #ddd;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    strong,
+    b {
+      color: #eee;
+    }
+
+    code {
+      background-color: #777;
+    }
+
+    pre code {
+      color: #ddd;
+    }
+
+    blockquote {
+      color: #ccc;
+    }
+
+    textarea,
+    input {
+      background-color: #252525;
+      color: #ddd;
+    }
+
+    .helptext {
+      color: #aaa;
+    }
+
+    a:hover {
+      color: #fff;
+    }
+  }
+</style>
+
+</head>
+
+<body>
+  <header><a href="/" class="title">
+  <h2>Mike Jeffs</h2>
+</a>
+<nav><a href="/">Home</a>
+
+<a href="/links/">Links</a>
+
+
+<a href="/blog">Blog</a>
+
+</nav>
+</header>
+  <main>
+
+<h1>Writing .NET Integration tests with Testcontainers</h1>
+<p>
+  <i>
+    <time datetime='2024-11-10' pubdate>
+      2024-11-10
+    </time>
+  </i>
+</p>
+
+<content>
+  <p>This tutorial will demonstrate how to setup a Testcontainer running PostgreSQL for running integration tests on a ASP.NET Core Web API.
+For database access, both Entity Framework and Dapper are covered in this tutorial.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>A Web API project setup with a database, and at least one endpoint to test against.</li>
+<li>Docker installed on your machine.</li>
+</ul>
+<h2 id="setup">Setup</h2>
+<p>Create a new xUnit project, and within it install any dependencies you require (e.g. fluentAssertions, Bogus for fake data, etc.). You also need to add a reference to the Web API project in the test projects csproj file.</p>
+<p>Once the project is created, Install the <code>Testcontainers.PostgreSql</code> package to be able to run a postgres database in a container.
+You&rsquo;ll also need to install the <code>Microsoft.AspNetCore.Mvc.Testing</code> package from nuget. This package includes the <code>WebApplicationFactory</code> for creating a &lsquo;mocked&rsquo; version of our API, so that we don&rsquo;t need to manually run our API each time we want to run our tests.</p>
+<p>You may also need to create an https certificate for your API in you haven&rsquo;t done so already.
+To do this, open a terminal, navigate to your API project, and simply run the following command:
+<code>dotnet dev-certs https -ep cert.pfx -p Testy123!</code></p>
+<h3 id="webapplicationfactory">WebApplicationFactory</h3>
+<p>Once the <code>Microsoft.AspNetCore.Mvc.Testing</code> package is installed, we can create a class that inherits the WebApplicationFactory. This is where we will setup our Testcontainer, as well as our http client to make the calls to our API.
+The class will look like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C#" data-lang="C#"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ApiFactory</span> : WebApplicationFactory&lt;IApiMarker&gt;, IAsyncLifetime
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> Task InitializeAsync() =&gt; Task.CompletedTask;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> Task DisposeAsync() =&gt; Task.CompletedTask;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Here, the WebApplicationFactory is giving us a bootstrapped API to run in memory for our tests. We inherit from it to override certain behaviours, such as registering our database container and other services required for our tests.</p>
+<p>Notice the generic type in the WebApplicationFactory declaration &lsquo;IApiMarker&rsquo;. This lives in the API project, and as the name suggests, it&rsquo;s just a empty interface marker to your API, which enables the WebApplicationFactory to easily find the API it is bootstrapping. You <em>can</em> use the &lsquo;Program.cs&rsquo; file in the API, but it is generally considered a better practice to use a marker interface.</p>
+<p>The factory should implement the IAsyncLifetime interface, which implements two methods, <code>InitializeAsync</code> and <code>DisposeAsync</code>. These async methods are where we are going to initialise and teardown our testcontainer(s) and other resources.</p>
+<h3 id="creating-a-testcontainer">Creating a Testcontainer</h3>
+<p>Within the ApiFactory class created in the previous section, create a property for the Postgres container for our database like so:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C#" data-lang="C#"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> PostgreSqlContainer _dbContainer = <span style="color:#66d9ef">new</span> PostgreSqlBuilder()
+</span></span><span style="display:flex;"><span>    .WithDatabase(<span style="color:#e6db74">&#34;&lt;your-db-name&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>    .WithUsername(<span style="color:#e6db74">&#34;postgres&#34;</span>)
+</span></span><span style="display:flex;"><span>    .WithPassword(<span style="color:#e6db74">&#34;postgres&#34;</span>)
+</span></span><span style="display:flex;"><span>    .WithPortBinding(<span style="color:#ae81ff">5432</span>, <span style="color:#ae81ff">5432</span>)
+</span></span><span style="display:flex;"><span>    .WithWaitStrategy(Wait.ForUnixContainer()
+</span></span><span style="display:flex;"><span>        .UntilPortIsAvailable(<span style="color:#ae81ff">5432</span>))
+</span></span><span style="display:flex;"><span>    .Build();
+</span></span></code></pre></div><p>Since this container will be running for the lifetime of our tests only, and then spun down when no longer needed, and as they&rsquo;re running locally on our machine, the username and password can be anything, but make sure to set the database name.
+The <code>.WithPortBinding</code> is not strictly necessary unless you find that your container does not start on the expected port by default. With it, you can explicitly set the port binding, where the first parameter is the host port, and the second being the internal container port that the service is running on.
+The <code>WithWaitStrategy</code> is just there as a precaution in case a local database is already running on that port, you can leave it out if you wish, but essentially it will wait until the port is available before starting.</p>
+<h3 id="adding-an-http-client">Adding an HTTP client</h3>
+<p>We also need to setup an HTTP client in order to run our integration tests against our API. I like to set it up within the ApiFactory class, but you can create them in the test file(s) if you prefer.
+The WebApplicationFactory provides a method called <code>CreateClient()</code> that returns an instance of <code>HttpClient</code>. We just need to define a public property in the factory (with a private setter so it can only be assigned by the factory).
+<code>public HttpClient HttpClient { get; private set; }</code>
+The assignment of this property must be done within the <code>InitializeAsync</code> method, but more on this in the next section.</p>
+<h3 id="starting-and-stopping-our-factory-resources">Starting and Stopping our factory resources</h3>
+<p>For any Testcontainers declared in our factory, to start them up they must be called from the <code>InitializeAsync</code> method. In this example, we&rsquo;re using a PostgreSQL container, which includes a <code>StartAsync</code> method. For our HttpClient that we defined earlier, this must be created within the <code>InitializeAsync</code> method, but <strong>AFTER</strong> the database container is started. The ordering here matters, because if you create the http client <strong>before</strong> starting the db container, your integration tests will fail as they will make the API call before the database is fully up and running, thus causing a database connection failure.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C#" data-lang="C#"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> Task InitializeAsync()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> _dbContainer.StartAsync();
+</span></span><span style="display:flex;"><span>    HttpClient = CreateClient(); <span style="color:#75715e">// This must come AFTER the db is started.</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">new</span> Task DisposeAsync()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> _dbContainer.StopAsync();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Call <code>StopAsync</code> on the Testcontainer within the <code>DisposeAsync</code> method to ensure the container is torn down when all integration tests have completed. (the &rsquo;new&rsquo; keyword is required in the <code>DisposeAsync</code> method to prevent hiding the ValueTask override.)</p>
+<h3 id="setting-up-the-orm">Setting up the ORM</h3>
+<h4 id="ef-core---configuring-the-testcontainer-to-work-with-your-dbcontext">EF Core - configuring the Testcontainer to work with your DbContext</h4>
+<p>If your project is using EntityFramework core, follow the steps below:</p>
+<p>The Testcontainer needs to be configured with EF Core in order for it to be used for your tests. The WebApplicationFactory allows us to override the <code>ConfigureTestServices</code> method, in here we can override registrations to our applications service collection for dependency injection.
+In this case we need to remove all registrations of our existing DbContext and register a new one that uses the connection string of our Testcontainer, rather than the APIs one:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C#" data-lang="C#"><span style="display:flex;"><span><span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">void</span> ConfigureWebHost(IWebHostBuilder builder)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    builder.ConfigureTestServices(<span style="color:#66d9ef">async</span> services =&gt;
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        services.RemoveAll(<span style="color:#66d9ef">typeof</span>(AppDbContext));
+</span></span><span style="display:flex;"><span>                services.AddDbContext&lt;AppDbContext&gt;(opt =&gt;
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            opt.UseNpgsql(_dbContainer.GetConnectionString(), npgsqlOptions =&gt;
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>            });
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In my case, I&rsquo;m using a defined context called &lsquo;AppDbContext&rsquo;, with a single DbSet of users. Replace this with your own defined context as required.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C#" data-lang="C#"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppDbContext</span> : DbContext {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> DbSet&lt;User&gt; Users { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In the example above, we are removing all registrations of the AppDbcontext that will have occurred in our application code, and registered a new one using the connection string of our created Testcontainer.</p>
+<h4 id="dapper">Dapper</h4>
+<p>If you&rsquo;re using dapper as your ORM, follow the steps below to get your application to use the Testcontainer:</p>
+<p>Create an interface called IDbConnectionFactory, with a method that returns an <code>IDbConnection</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C#" data-lang="C#"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IDbConnectionFactory</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  Task&lt;IDbConnection&gt; CreateConnectionAsync(CancellationToken cancellationToken = <span style="color:#66d9ef">default</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>And then an implementation that uses the db of your choice, in this case it&rsquo;s PostgreSQL:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C#" data-lang="C#"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PostgresDbConnectionFactory</span>(<span style="color:#66d9ef">string</span> connectionString) : IDbConnectionFactory
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> Task&lt;IDbConnection&gt; CreateConnectionAsync(CancellationToken cancellationToken = <span style="color:#66d9ef">default</span>)
+</span></span><span style="display:flex;"><span>    {        <span style="color:#66d9ef">var</span> connection = <span style="color:#66d9ef">new</span> NpgsqlConnection(connectionString);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">await</span> connection.OpenAsync(cancellationToken);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> connection;
+</span></span><span style="display:flex;"><span>    }}
+</span></span></code></pre></div><p>Now we just have to remove the APIs DI registration for the IDbConnectionFactory, and then add a new one that points to the test container.
+The WebApplicationFactory allows us to override the <code>ConfigureTestServices</code> method, in here we can override registrations to our applications service collection for dependency injection.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C#" data-lang="C#"><span style="display:flex;"><span><span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">void</span> ConfigureWebHost(IWebHostBuilder builder)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    builder.ConfigureLogging(logging =&gt;
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        logging.ClearProviders();
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    builder.ConfigureTestServices(services =&gt;
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        services.RemoveAll(<span style="color:#66d9ef">typeof</span>(IDbConnectionFactory));
+</span></span><span style="display:flex;"><span>        services.AddSingleton&lt;IDbConnectionFactory&gt;(_ =&gt;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> PostgresDbConnectionFactory(_dbContainer.GetConnectionString()));
+</span></span><span style="display:flex;"><span>    });}
+</span></span></code></pre></div><p>At this point, our ApiFactory should be all setup and ready to go. Now we move on to writing some integration tests!</p>
+<h2 id="creating-an-integration-test">Creating an integration test</h2>
+<p>The following example is testing an API endpoint that takes in user input to create a new user and save it to the database. The <code>Bogus</code> package is used to generate some fake but &lsquo;realistic&rsquo; looking data that passes validation. The HttpClient is then used to call the POST create user endpoint in our API, passing in the request data, and waiting for the expected response.
+(This test assumes that the inputs provided are valid).</p>
+<p>This test class implements the <code>IClassFixture</code> interface. This interface comes from xUnit, and it allows for the API factory instance created to be shared among any and all tests that are defined in this class (instead of spinning up a new instance of the API in memory for each test).
+The api factory can then be injected into the constructor of the test class, and assigned to a variable for use.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C#" data-lang="C#"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CreateUserEndpointTests</span> : IClassFixture&lt;ApiFactory&gt;
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> ApiFactory _apiFactory;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> Faker&lt;CreateUserRequest&gt; _createUserRequestGenerator;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">readonly</span> List&lt;Guid&gt; _createdUserIds = [];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> CreateUserEndpointTests(ApiFactory apiFactory)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>	    _apiFactory = apiFactory;
+</span></span><span style="display:flex;"><span>        _createUserRequestGenerator = <span style="color:#66d9ef">new</span> Faker&lt;CreateUserRequest&gt;()
+</span></span><span style="display:flex;"><span>            .RuleFor(x =&gt; x.Email, f =&gt; f.Person.Email)
+</span></span><span style="display:flex;"><span>            .RuleFor(x =&gt; x.Password, f =&gt; <span style="color:#e6db74">&#34;AbcdefghijklMNOP12345&#34;</span>)
+</span></span><span style="display:flex;"><span>            .RuleFor(x =&gt; x.Username, f =&gt; f.Person.UserName)
+</span></span><span style="display:flex;"><span>            .RuleFor(x =&gt; x.DateOfBirth,
+</span></span><span style="display:flex;"><span>	            f =&gt; DateOnly.FromDateTime(f.Person.DateOfBirth));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">    [Fact]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> Task GIVEN_Create_WHEN_DataIsValid_THEN_CreateUser()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	    <span style="color:#66d9ef">var</span> request = _createUserRequestGenerator.Generate();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> response = <span style="color:#66d9ef">await</span> _apiFactory.HttpClient.PostAsync(
+</span></span><span style="display:flex;"><span>           <span style="color:#e6db74">&#34;/api/v1/users&#34;</span>,
+</span></span><span style="display:flex;"><span>           <span style="color:#66d9ef">new</span> StringContent(
+</span></span><span style="display:flex;"><span>           JsonSerializer.Serialize(request),
+</span></span><span style="display:flex;"><span>           Encoding.UTF8,
+</span></span><span style="display:flex;"><span>           <span style="color:#e6db74">&#34;application/json&#34;</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">var</span> stringResponse = <span style="color:#66d9ef">await</span> response.Content.ReadAsStringAsync();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	   response.StatusCode.Should().Be(HttpStatusCode.Created);
+</span></span><span style="display:flex;"><span>       stringResponse = stringResponse.Trim(<span style="color:#e6db74">&#39;&#34;&#39;</span>);
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">var</span> createdUserId = Guid.Parse(stringResponse);
+</span></span><span style="display:flex;"><span>       stringResponse.Should().NotBeNullOrEmpty();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>By following all the steps in this tutorial, you should now have a working integration test for your Postgresql database running in a Testcontainer!</p>
+
+</content>
+<p>
+  
+</p>
+
+  </main>
+  <footer><style>
+  footer {
+    display: flex;
+    width: 100%;
+    padding: 20px 0;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+</style>
+<footer>
+  x
+  <p>foo</p>
+  x
+  <p>bar</p>
+  
+  <p>Made with <a href="https://gohugo.io/">Hugo</a></p>
+</footer>
+</footer>
+
+    
+</body>
+
+</html>

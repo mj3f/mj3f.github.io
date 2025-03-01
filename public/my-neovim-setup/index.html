@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="http://localhost:1313/images/favicon.png" />
+<title>My Neovim Setup | Mike Jeffs</title>
+<meta name="title" content="My Neovim Setup" />
+<meta name="description" content="Post covering my neovim setup, plugin choices and how to use it." />
+<meta name="keywords" content="" />
+
+
+<meta property="og:url" content="http://localhost:1313/my-neovim-setup/">
+  <meta property="og:site_name" content="Mike Jeffs">
+  <meta property="og:title" content="My Neovim Setup">
+  <meta property="og:description" content="Post covering my neovim setup, plugin choices and how to use it.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2025-03-01T17:17:00+00:00">
+    <meta property="article:modified_time" content="2025-03-01T17:17:00+00:00">
+    <meta property="og:image" content="http://localhost:1313/images/share.png">
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/images/share.png">
+  <meta name="twitter:title" content="My Neovim Setup">
+  <meta name="twitter:description" content="Post covering my neovim setup, plugin choices and how to use it.">
+
+
+
+
+  <meta itemprop="name" content="My Neovim Setup">
+  <meta itemprop="description" content="Post covering my neovim setup, plugin choices and how to use it.">
+  <meta itemprop="datePublished" content="2025-03-01T17:17:00+00:00">
+  <meta itemprop="dateModified" content="2025-03-01T17:17:00+00:00">
+  <meta itemprop="wordCount" content="1092">
+  <meta itemprop="image" content="http://localhost:1313/images/share.png">
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+  <style>
+  body {
+    font-family: Verdana, sans-serif;
+    height: 95vh;
+    margin: auto;
+    padding: 20px;
+    max-width: 800px;
+    text-align: left;
+    background-color: #fff;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.5;
+    color: #444;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong,
+  b {
+    color: #222;
+  }
+
+  a {
+    color: #fcd34d;
+  }
+
+  a:hover {
+    color: #000;
+  }
+
+  .title {
+    text-decoration: none;
+    border: 0;
+  }
+
+  .title span {
+    font-weight: 400;
+  }
+
+  nav a {
+    margin-right: 10px;
+  }
+
+  textarea {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  input {
+    font-size: 16px;
+  }
+
+  content {
+    line-height: 1.6;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  code {
+    padding: 2px 5px;
+    background-color: #f2f2f2;
+  }
+
+  pre code {
+    color: #222;
+    display: block;
+    padding: 20px;
+    white-space: pre-wrap;
+    font-size: 14px;
+    overflow-x: auto;
+  }
+
+  div.highlight pre {
+    background-color: initial;
+    color: initial;
+  }
+
+  div.highlight code {
+    background-color: unset;
+    color: unset;
+  }
+
+  blockquote {
+    border-left: 1px solid #999;
+    color: #222;
+    padding-left: 20px;
+    font-style: italic;
+  }
+
+  .helptext {
+    color: #777;
+    font-size: small;
+  }
+
+  .errorlist {
+    color: #eba613;
+    font-size: small;
+  }
+
+   
+  ul.blog-posts {
+    list-style-type: none;
+    padding: unset;
+  }
+
+  ul.blog-posts li {
+    display: flex;
+  }
+
+  ul.blog-posts li span {
+    flex: 0 0 130px;
+  }
+
+  ul.blog-posts li a:visited {
+    color: #b3932e;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: #1e293b;
+      color: #ddd;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    strong,
+    b {
+      color: #eee;
+    }
+
+    code {
+      background-color: #777;
+    }
+
+    pre code {
+      color: #ddd;
+    }
+
+    blockquote {
+      color: #ccc;
+    }
+
+    textarea,
+    input {
+      background-color: #252525;
+      color: #ddd;
+    }
+
+    .helptext {
+      color: #aaa;
+    }
+
+    a:hover {
+      color: #fff;
+    }
+  }
+</style>
+
+</head>
+
+<body>
+  <header><a href="/" class="title">
+  <h2>Mike Jeffs</h2>
+</a>
+<nav><a href="/">Home</a>
+
+<a href="/links/">Links</a>
+
+
+<a href="/blog">Blog</a>
+
+</nav>
+</header>
+  <main>
+
+<h1>My Neovim Setup</h1>
+<p>
+  <i>
+    <time datetime='2025-03-01' pubdate>
+      2025-03-01
+    </time>
+  </i>
+</p>
+
+<content>
+  <h2 id="intro">Intro</h2>
+<p>In this post I&rsquo;m going to over my custom neovim configuration, explain how it works, what&rsquo;s included, and how you can use it. This post assumes you already have neovim installed on your machine, or at least know how to do so, and that you have a basic understanding of vim. If you don&rsquo;t, I&rsquo;d recommend checking out the sources section at the bottom of the post to learn more.</p>
+<p>I&rsquo;ve been using vim for a long time. It started in university when I needed an upgrade from trusty old nano in the terminal. Then over the years I&rsquo;ve been using a vim emulator in IntelliJ and VSCode. Recently, I became envious of people like the primeagen using their customised neovim setups to get stuff done. It looked cool, so I decided I wanted to have a cool setup neovim setup too!</p>
+<p>For those that don&rsquo;t know, neovim is a fork of vim that uses lua for extending the base functionality. There are many neovim &lsquo;distros&rsquo; out there, which are pre-defined configurations that include various plugins and themes to give you a seamless out of the box riced neovim experience. A popular one is LazyVim. My config borrows aspects from Lazyvim but it is nonetheless a &lsquo;from scratch&rsquo; configuration. I wanted to build my own so that I could better understand how it all worked, and also to have a config that perfectly suits my needs without any additional bloat.</p>
+<h2 id="getting-started">Getting started</h2>
+<p>The <code>init.lua</code> file located in the base <code>~/.config/nvim</code> directory is required for all custom nvim configs. In my case, I&rsquo;ve modularised it so that it imports the files that contain my actual config.
+To use this config, simply copy the contents of the <code>nvim/</code> directory found in the <a href="https://github.com/mj3f/dotfiles">repo</a> to your .config directory by running <code>cp -r dotfiles/nvim ~/.config</code> (this cp command may need tweaking to fit your choice of OS but you get the idea). Once this is done, simply run <code>nvim</code> and everything should install automatically.</p>
+<h3 id="initlua">init.lua</h3>
+<p>The contents of my <code>init.lua</code> file look like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>require(<span style="color:#e6db74">&#34;core.keymaps&#34;</span>)
+</span></span><span style="display:flex;"><span>require(<span style="color:#e6db74">&#34;core.plugins&#34;</span>)
+</span></span><span style="display:flex;"><span>require(<span style="color:#e6db74">&#34;core.plugin_config&#34;</span>)
+</span></span></code></pre></div><p>This simply imports the lua files located within the <code>core/</code> directory. <code>keymaps.lua</code> is where you&rsquo;ll find all my custom keymap overrides for vim (note this doesn&rsquo;t include any custom keymappings for plugins). <code>plugins.lua</code> is where all the plugins are defined, and <code>plugin_config/</code> is a directory containing several lua files for each plugin installed, used to initialise the plugin(s) with custom settings.</p>
+<h2 id="setting-custom-key-mappings">Setting custom key mappings</h2>
+<p>Custom key maps are located in the <code>lua/core/keymaps.lua</code> file.
+As neovim uses lua rather than vimscript, you need to use &lsquo;meta-accessors&rsquo; to access the underlying vim apis.
+refer to <a href="https://github.com/nanotee/nvim-lua-guide?tab=readme-ov-file#using-meta-accessors">this</a> for more information, but the main two accessors are <code>vim.o</code> or <code>vim.opt</code>, and they&rsquo;re used to &lsquo;set&rsquo; stuff in vim.
+<code>vim.g</code> is similar except it&rsquo;s applies globally, rather than at the buffer level. This is usually used to set values for settings used by the plugins you import.</p>
+<h2 id="adding-plugins">Adding plugins</h2>
+<p>Lazy.nvim is a package manager used to install packages for your neovim config. There are other package managers out there (I&rsquo;ve used Packer in the past), but Lazy.nvim seems to be the most feature-rich and popular these days, so you shouldn&rsquo;t have issues finding install instructions for plugins in Lazy.nvim.
+Adding plugins can be achieved by adding them to the <code>lua/core/plugins.lua</code> file, under the &lsquo;plugins&rsquo; table towards the bottom of the file.</p>
+<p>e.g. (this example demonstrates how to install the &lsquo;gruvbox&rsquo; neovim theme)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#66d9ef">local</span> plugins <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  { <span style="color:#e6db74">&#34;ellisonleao/gruvbox.nvim&#34;</span>, priority <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span> , config <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>, opts <span style="color:#f92672">=</span> ...},
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The first part is the name of the repo for the plugin in github, some plugin definitions will contain just the name, others may need to define configurations and/or dependencies.
+Once the plugin has been added, if you run the <code>nvim</code> command it should automatically install the plugin. Afterwards make sure to run the vim command <code>:checkhealth name-of-plugin</code> to check the status of the plugin post-install, and whether you need to do any other setup to it.</p>
+<p>Lastly, you need to actually load the plugin in order to use it, this is done by calling <code>require(&quot;gruvbox&quot;).setup()</code>. This &lsquo;imports&rsquo; the plugin, much like how you would import packages in various programming languages, and <code>.setup()</code> initialises it.
+In my neovim config, each plugin has it&rsquo;s own lua file, located in <code>lua/core/plugin_config</code>.
+If a plugin requires further setup, such as tweaking its default options, you can define a local variable to easily access the plugin, e.g. <code>local config = require(&quot;gruvbox&quot;) \n config.setup({...})</code></p>
+<p>The <code>:Lazy</code> vim command opens a nice TUI window to show you a list of all installed plugins, and an easy way to update them.</p>
+<h2 id="adding-language-support">Adding language support</h2>
+<p>The Mason plugin is used to manage any installed LSP (Language Server Protocol) and Linter/formatters. The TUI can be accessed by running the <code>:Mason</code> command.
+To add a new LSP, you need to add the name of it to the ensure_installed table located within the <code>lua/core/plugin_config/lsp_config.lua</code> file. After that is done, you need to setup the LSP at the bottom of the file by adding:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span>lspconfig.cssls.setup {
+</span></span><span style="display:flex;"><span>  capabilities <span style="color:#f92672">=</span> capabilities
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>(capabilities ensures that code completions for the newly added language are supported)</p>
+<p>To install linters, like prettier, it is a slightly different process. You can install them using <code>:Mason</code>, but to configure and initialise them, you need to do the setup within the <code>conform.lua</code> file within the <code>plugins_config</code>.</p>
+<h2 id="installed-plugins">Installed Plugins</h2>
+<p>Below is a brief summary of each installed plugin at the time of this post (mainly to remind me what they do!)</p>
+<ul>
+<li>Gruvbox is the theme of choice</li>
+<li>telescope for fuzzy finding of files within the directory</li>
+<li>nvim-treesitter for syntax highlighting and colour support for defined programming languages?</li>
+<li>nvim-tree for a file directory window popup</li>
+<li>lualine for a cool bar at the bottom of the terminal window</li>
+<li>gitsigns for showing when code has been added/removed/modified between commits</li>
+<li>git-blame to blame myself when something goes wrong.</li>
+<li>nvim-cmp &amp; cmp-nvim-lsp for language support.</li>
+<li>mason for managing LSPs.</li>
+<li>LuaSnip for code snippets.</li>
+<li>which-key as a helpful legend for all defined keymaps.</li>
+<li>dashboard-nvim for a cool neovim start screen.</li>
+<li>conform for setting up linters.</li>
+<li>harpoon for quickly switching between frequently used files in the current session.</li>
+</ul>
+<h2 id="source-and-other-misc-bits">Source (and other misc bits)</h2>
+<p>I followed (the free part) of <a href="https://typecraft.dev/neovim-for-newbs/">this course from typecraft</a> to create my neovim configuration. It is a paid course but the free section should be more than enough for you to get started with building your own config.
+Learn more about neovim <a href="https://neovim.io/">here</a>
+If you&rsquo;re new to vim, I recommend <a href="https://www.youtube.com/playlist?list=PLm323Lc7iSW_wuxqmKx_xxNtJC_hJbQ7R">this youtube playlist</a> from &lsquo;ThePrimeagen&rsquo; to get started.</p>
+
+</content>
+<p>
+  
+</p>
+
+  </main>
+  <footer><style>
+  footer {
+    display: flex;
+    width: 100%;
+    padding: 20px 0;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+</style>
+<footer>
+  <p>© 2024-2025 Mike Jeffs</p>
+  <p>Made with <a href="https://gohugo.io/">Hugo</a></p>
+</footer>
+</footer>
+
+    
+</body>
+
+</html>

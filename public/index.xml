@@ -7,14 +7,21 @@
     <generator>Hugo</generator>
     <language>en-US</language>
     <copyright>Copyright © 2024, Michael Jeffs.</copyright>
-    <lastBuildDate>Sun, 10 Nov 2024 20:02:08 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 01 Mar 2025 17:17:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Writing Integration tests with Testcontainers</title>
-      <link>http://localhost:1313/writing-integration-tests-with-testcontainers/</link>
+      <title>My Neovim Setup</title>
+      <link>http://localhost:1313/my-neovim-setup/</link>
+      <pubDate>Sat, 01 Mar 2025 17:17:00 +0000</pubDate>
+      <guid>http://localhost:1313/my-neovim-setup/</guid>
+      <description>&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;/h2&gt;&#xA;&lt;p&gt;In this post I&amp;rsquo;m going to over my custom neovim configuration, explain how it works, what&amp;rsquo;s included, and how you can use it. This post assumes you already have neovim installed on your machine, or at least know how to do so, and that you have a basic understanding of vim. If you don&amp;rsquo;t, I&amp;rsquo;d recommend checking out the sources section at the bottom of the post to learn more.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Writing .NET Integration tests with Testcontainers</title>
+      <link>http://localhost:1313/writing-.net-integration-tests-with-testcontainers/</link>
       <pubDate>Sun, 10 Nov 2024 20:02:08 +0000</pubDate>
-      <guid>http://localhost:1313/writing-integration-tests-with-testcontainers/</guid>
-      <description>&lt;p&gt;This tutorial will demonstrate how to setup a Testcontainer running PostgreSQL for running integration tests on a ASP.NET Core Web API.&#xA;For database access, both Entity Framework and Dapper are covered in this tutorial.&lt;/p&gt;&#xA;&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;A Web API project setup with a database, and at least one endpoint to test again.&lt;/li&gt;&#xA;&lt;li&gt;Docker installed on your machine.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;setup&#34;&gt;Setup&lt;/h2&gt;&#xA;&lt;p&gt;Create a new xUnit project, and within it install any dependencies you require (e.g. fluentAssertions, Bogus for fake data, etc.). You also need to add a reference to the Web API project in the test projects csproj file.&lt;/p&gt;</description>
+      <guid>http://localhost:1313/writing-.net-integration-tests-with-testcontainers/</guid>
+      <description>&lt;p&gt;This tutorial will demonstrate how to setup a Testcontainer running PostgreSQL for running integration tests on a ASP.NET Core Web API.&#xA;For database access, both Entity Framework and Dapper are covered in this tutorial.&lt;/p&gt;&#xA;&lt;h2 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;A Web API project setup with a database, and at least one endpoint to test against.&lt;/li&gt;&#xA;&lt;li&gt;Docker installed on your machine.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;setup&#34;&gt;Setup&lt;/h2&gt;&#xA;&lt;p&gt;Create a new xUnit project, and within it install any dependencies you require (e.g. fluentAssertions, Bogus for fake data, etc.). You also need to add a reference to the Web API project in the test projects csproj file.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Links</title>
